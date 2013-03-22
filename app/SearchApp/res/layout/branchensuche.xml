@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/BackgroundYellow"
+    android:orientation="vertical" >
+
+       <TextView
+           android:id="@+id/textView1"
+           style="@style/DesignForText"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignParentLeft="true"
+           android:layout_alignParentTop="true"
+           android:text="@string/Branche" />
+
+    <!-- Taste1 -->
+
+    <!-- Taste2 -->
+
+    <!--
+        button inaktiv or aktiv
+        Button btn=(Button)findviewById(R.id.button1);
+		btn.setEnabled(false);
+		when you want to enable the same button just write
+		Button btn=(Button)findviewById(R.id.button1); btn.setEnabled(true);
+    -->
+
+    <Button
+        android:id="@+id/button2"
+        style="@style/DesingForButtons"
+        android:layout_alignLeft="@+id/button1"
+        android:layout_below="@+id/button1"
+        android:layout_marginTop="10dp"
+        android:onClick="startSearching"
+        android:text="@string/serviceStation" />
+
+    <Button
+        android:id="@+id/button1"
+        style="@style/DesingForButtons"
+        android:layout_below="@+id/textView1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:text="@string/food" />
+
+    <Button
+        android:id="@+id/button3"
+        style="@style/DesingForButtons"
+        android:layout_alignLeft="@+id/button2"
+        android:layout_below="@+id/button2"
+        android:layout_marginTop="10dp"
+        android:onClick="startSearching"
+        android:text="@string/sport" />
+
+</RelativeLayout>
