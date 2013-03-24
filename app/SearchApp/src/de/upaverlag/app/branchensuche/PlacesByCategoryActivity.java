@@ -25,7 +25,7 @@ import android.widget.SimpleAdapter;
 
 public class PlacesByCategoryActivity extends ListActivity {
 
-	String ctg = "auto";
+	String ctg ;
 	// Progress Dialog
 	private ProgressDialog fDialog;
 
@@ -35,7 +35,7 @@ public class PlacesByCategoryActivity extends ListActivity {
 	ArrayList<HashMap<String, String>> firmenList;
 
 	// url to get all products list
-	private static String UrlPlacesByCategory = "http://127.0.0.1/android/app/PlacesByCategory.php";
+	private static String UrlPlacesByCategory = "http://10.0.2.2:80/android/app/PlacesByCategory.php";
 
 	// JSON Node names
 	private static final String TAG_SUCCESS = "success";
@@ -62,7 +62,7 @@ public class PlacesByCategoryActivity extends ListActivity {
 		setContentView(R.layout.activity_places_by_category);
 
 		firmenList = new ArrayList<HashMap<String, String>>();
-//		getCategory();
+		getCategory();
 		new LoadAllProducts().execute();
 	}
 
@@ -73,7 +73,7 @@ public class PlacesByCategoryActivity extends ListActivity {
 		return true;
 	}
 
-	/*String getCategory() {
+	String getCategory() {
 
 		Intent i = getIntent();
 		// Receiving the Data
@@ -81,7 +81,7 @@ public class PlacesByCategoryActivity extends ListActivity {
 		Log.e("Second Screen", ctg);
 		return ctg;
 
-	}*/
+	}
 
 	/**
 	 * Background Async Task to Load all product by making HTTP Request
@@ -110,7 +110,10 @@ public class PlacesByCategoryActivity extends ListActivity {
 
 			params.add(new BasicNameValuePair("category", ctg));
 			// getting JSON string from URL
-			JSONObject json = jParser.makeHttpRequest(UrlPlacesByCategory,"POST", params);
+			JSONObject json = jParser.makeHttpRequest(UrlPlacesByCategory,"GET", params);
+			 
+         
+		
 			System.out.println(json);
 
 			// Check your log cat for JSON reponse
@@ -133,14 +136,14 @@ public class PlacesByCategoryActivity extends ListActivity {
 						String id = c.getString(TAG_ID);
 						String name = c.getString(TAG_NAME);
 
-						String postcode = c.getString(TAG_PLZ);
+//						String postcode = c.getString(TAG_PLZ);
 
 						String cat = c.getString(TAG_CATEGORY);
-						String city = c.getString(TAG_CITY);
-						int laenge = new Integer(c.getString(TAG_LONG));
-						int breite = new Integer(c.getString(TAG_LAT));
+//						String city = c.getString(TAG_CITY);
+//						int laenge = new Integer(c.getString(TAG_LONG));
+//						int breite = new Integer(c.getString(TAG_LAT));
 						
-						String icon = c.getString(TAG_LOGO);
+//						String icon = c.getString(TAG_LOGO);
 
 						// creating new HashMap
 						HashMap<String, String> map = new HashMap<String, String>();
@@ -148,10 +151,10 @@ public class PlacesByCategoryActivity extends ListActivity {
 						// adding each child node to HashMap key => value
 						map.put(TAG_ID, id);
 						map.put(TAG_NAME, name);
-						map.put(TAG_PLZ, postcode);
+//						map.put(TAG_PLZ, postcode);
 						map.put(TAG_CATEGORY, cat);
-						map.put(TAG_CITY, city);
-						map.put(TAG_NAME, name);
+//						map.put(TAG_CITY, city);
+
 
 						// adding HashList to ArrayList
 						firmenList.add(map);
