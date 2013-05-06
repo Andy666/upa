@@ -4,64 +4,23 @@
     android:layout_height="match_parent"
     android:background="@color/BackgroundYellow" >
 
-    <EditText
-        android:id="@+id/editText1"
-        android:layout_width="286dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="58dp"
-        android:ems="10" />
-
-    <TextView
-        android:id="@+id/textView1"
-        style="@style/DesingForTextSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText1"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="35dp"
-        android:text="@string/searchterm"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <EditText
-        android:id="@+id/editText2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText1"
-        android:layout_alignRight="@+id/editText1"
-        android:layout_below="@+id/textView2"
-        android:ems="10" />
-
-    <TextView
-        android:id="@+id/textView2"
-        style="@style/DesingForTextSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_below="@+id/editText1"
-        android:layout_marginTop="15dp"
-        android:text="@string/zip"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
     <TextView
         android:id="@+id/textView3"
         style="@style/DesingForTextSmall"
-        android:layout_width="wrap_content"
+        android:layout_width="286dp"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView2"
-        android:layout_below="@+id/editText2"
-        android:layout_marginTop="15dp"
+        android:layout_below="@+id/ortTextField"
+        android:layout_marginTop="10dp"
         android:text="@string/country"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <Spinner
         android:id="@+id/spinner1"
-        android:layout_width="wrap_content"
+        android:layout_width="286dp"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText2"
-        android:layout_alignRight="@+id/editText2"
+        android:layout_alignLeft="@+id/ortTextField"
+        android:layout_alignRight="@+id/ortTextField"
         android:layout_below="@+id/textView3"
         android:entries="@array/country_arrays"
         android:prompt="@string/country" />
@@ -69,12 +28,70 @@
     <Button
         android:id="@+id/subbmitBtn"
         style="@style/DesingForButtons"
-        android:layout_width="270dp"
-        android:layout_height="50dp"
+        android:layout_width="286dp"
+        android:layout_height="60dp"
         android:layout_alignLeft="@+id/spinner1"
         android:layout_alignRight="@+id/spinner1"
         android:layout_below="@+id/spinner1"
         android:layout_marginTop="17dp"
         android:text="Suchen" />
+
+    <TextView
+        android:id="@+id/textView4"
+        style="@style/DesignForText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp"
+        android:text="@string/directSearche"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <EditText
+        android:id="@+id/suchbegriff"
+        android:layout_width="286dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView1"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:imeOptions="actionDone"
+        android:inputType="text" />
+
+    <TextView
+        android:id="@+id/textView1"
+        style="@style/DesingForTextSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/suchbegriff"
+        android:layout_below="@+id/textView4"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:text="@string/searchterm"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <AutoCompleteTextView
+        android:id="@+id/ortTextField"
+        android:layout_width="286dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/suchbegriff"
+        android:layout_below="@+id/textView2"
+        android:ems="10"
+        android:imeOptions="actionDone"
+        android:inputType="textPostalAddress" 
+         style="@style/DesingForTextViewInput"/>
+
+  
+
+    <TextView
+        android:id="@+id/textView2"
+        style="@style/DesingForTextSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_below="@+id/suchbegriff"
+        android:layout_marginTop="10dp"
+        android:text="@string/zip"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </RelativeLayout>

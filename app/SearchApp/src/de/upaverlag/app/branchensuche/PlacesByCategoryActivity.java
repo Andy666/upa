@@ -20,14 +20,21 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
+
 import android.widget.SimpleAdapter;
 
 public class PlacesByCategoryActivity extends ListActivity {
 
-	String ctg ;
+	String ctg;
 	// Progress Dialog
 	private ProgressDialog fDialog;
+	private OnItemClickListener getMoreDetails;
 
 	// Creating JSON Parser object
 	JSONManager jParser = new JSONManager();
@@ -50,9 +57,6 @@ public class PlacesByCategoryActivity extends ListActivity {
 	private static final String TAG_LONG = "long";
 	private static final String TAG_LAT = "lat";
 	private static final String TAG_LOGO = "icon";
-	// private static final String TAG_PHONE_MOBILE = "mobile";
-	// private static final String TAG_PHONE_HOME = "home";
-	// private static final String TAG_PHONE_OFFICE = "office";
 
 	JSONArray places = null;
 
@@ -64,6 +68,9 @@ public class PlacesByCategoryActivity extends ListActivity {
 		firmenList = new ArrayList<HashMap<String, String>>();
 		getCategory();
 		new LoadAllProducts().execute();
+		
+		
+		 
 	}
 
 	@Override
@@ -73,14 +80,34 @@ public class PlacesByCategoryActivity extends ListActivity {
 		return true;
 	}
 
-	String getCategory() {
+	void getCategory() {
 
 		Intent i = getIntent();
 		// Receiving the Data
 		this.ctg = i.getStringExtra("category");
 		Log.e("Second Screen", ctg);
-		return ctg;
+		
+	}
 
+public void addActionOnItemClick (){
+	 ListView lv = getListView();
+	 
+	 getMoreDetails = new OnItemClickListener() {
+			  @Override
+	          public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				 String firma = contertTxtViewToString (R.id.name);
+				 
+                 
+			  }
+		};
+		
+	}
+
+	private String contertTxtViewToString (int idNumber){
+		TextView tmp = (TextView) findViewById(idNumber);
+		String txtToString = tmp.getText().toString();
+				
+		return txtToString;
 	}
 
 	/**
@@ -110,10 +137,9 @@ public class PlacesByCategoryActivity extends ListActivity {
 
 			params.add(new BasicNameValuePair("category", ctg));
 			// getting JSON string from URL
-			JSONObject json = jParser.makeHttpRequest(UrlPlacesByCategory,"GET", params);
-			 
-         
-		
+			JSONObject json = jParser.makeHttpRequest(UrlPlacesByCategory,
+					"GET", params);
+
 			System.out.println(json);
 
 			// Check your log cat for JSON reponse
@@ -136,14 +162,14 @@ public class PlacesByCategoryActivity extends ListActivity {
 						String id = c.getString(TAG_ID);
 						String name = c.getString(TAG_NAME);
 
-//						String postcode = c.getString(TAG_PLZ);
+						 String postcode = c.getString(TAG_PLZ);
 
 						String cat = c.getString(TAG_CATEGORY);
-//						String city = c.getString(TAG_CITY);
-//						int laenge = new Integer(c.getString(TAG_LONG));
-//						int breite = new Integer(c.getString(TAG_LAT));
-						
-//						String icon = c.getString(TAG_LOGO);
+						 String city = c.getString(TAG_CITY);
+						 String  laenge = c.getString(TAG_LONG);
+						 String  breite =c.getString(TAG_LAT);
+
+						 String logo = c.getString(TAG_LOGO);
 
 						// creating new HashMap
 						HashMap<String, String> map = new HashMap<String, String>();
@@ -151,11 +177,13 @@ public class PlacesByCategoryActivity extends ListActivity {
 						// adding each child node to HashMap key => value
 						map.put(TAG_ID, id);
 						map.put(TAG_NAME, name);
-//						map.put(TAG_PLZ, postcode);
+						map.put(TAG_PLZ, postcode);
 						map.put(TAG_CATEGORY, cat);
-//						map.put(TAG_CITY, city);
-
-
+						 map.put(TAG_CITY, city);
+						 map.put(TAG_LOGO, logo);
+						 map.put(TAG_LONG, laenge);
+						 map.put(TAG_LAT, breite);
+						 
 						// adding HashList to ArrayList
 						firmenList.add(map);
 					}
@@ -189,8 +217,8 @@ public class PlacesByCategoryActivity extends ListActivity {
 					 * */
 					ListAdapter adapter = new SimpleAdapter(
 							PlacesByCategoryActivity.this, firmenList,
-							R.layout.list_item, new String[] { TAG_NAME },
-							new int[] { R.id.name });
+							R.layout.list_item, new String[] { TAG_NAME, TAG_CATEGORY, TAG_PLZ, TAG_CITY, TAG_LONG, TAG_LAT },
+							new int[] { R.id.name , R.id.catg , R.id.plz , R.id.stadt , R.id.lgt , R.id.lat});
 					// updating listview
 					setListAdapter(adapter);
 				}

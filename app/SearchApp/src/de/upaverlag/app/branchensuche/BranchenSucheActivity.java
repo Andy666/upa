@@ -12,9 +12,9 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-public class BranchenSucheActivity extends Activity {
+public class BranchenSucheActivity {
 
-	private Button autoBtn;
+/*	private Button autoBtn;
 	private Button foodBtn;
 	private OnClickListener btnClick;
 
@@ -43,14 +43,14 @@ public class BranchenSucheActivity extends Activity {
 				
 				switch (v.getId()) {
 				case R.id.button1:
-					catSearching(v, foodBtn);
+					catSearching(foodBtn);
 					break;
 				
 				case R.id.button2:
-					catSearching(v, autoBtn);
+					catSearching(autoBtn);
 					break;	
 				case R.id.button3:
-					catSearching(v, foodBtn);
+					catSearching(foodBtn);
 					break;
 				default:
 					
@@ -60,20 +60,17 @@ public class BranchenSucheActivity extends Activity {
 		};
 		autoBtn.setOnClickListener(btnClick);
 		foodBtn.setOnClickListener(btnClick);
-	}
+	}*/
 
 	
 
-	private void catSearching(View v, Button b ) {
+/*	private void catSearching(Button b ) {
 		//b = (Button)v;
 		String buttonTxt = b.getText().toString();
 		Intent branchensuche = new Intent(BranchenSucheActivity.this, PlacesByCategoryActivity.class);
 		branchensuche.putExtra("category", buttonTxt);
 		Log.e ("n", buttonTxt);
 		 startActivity(branchensuche);
-		 
-		
-
-	}
+	}*/
 
 }
